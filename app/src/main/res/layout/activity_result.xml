@@ -69,6 +69,7 @@
                 android:text="고등어" />
 
             <WebView
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />

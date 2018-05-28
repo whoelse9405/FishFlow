@@ -74,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.setType("image/*");                                          //이미지 형태만 가져오기
                 //startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQ_PICK_CODE);
                 startActivityForResult(intent, REQ_PICK_CODE);
-
-
-
             }
         });
 
@@ -109,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(resultCode!=RESULT_OK) return;
 
         switch (requestCode)
@@ -119,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case REQ_CAMERA_CODE:{
-                imageView=(ImageView)findViewById(R.id.imageView);
-                imageView.setImageURI(data.getData());
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                ((ImageView)findViewById(R.id.imageView)).setImageBitmap(imageBitmap);
                 break;
             }
         }
@@ -140,7 +139,5 @@ public class MainActivity extends AppCompatActivity {
 
         return cameraApps.size() > 0;
     }
-
-
 
 }
