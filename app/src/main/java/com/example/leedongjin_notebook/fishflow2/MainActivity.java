@@ -6,7 +6,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.service.media.MediaBrowserService;
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        if(Build.VERSION.SDK_INT>=21){
+            getWindow().setStatusBarColor(Color.parseColor("#ff7828"));
+        }
 
         //helpButton
         helpButton=(ImageButton) findViewById(R.id.helpButton);
