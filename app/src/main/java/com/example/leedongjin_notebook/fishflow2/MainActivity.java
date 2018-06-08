@@ -10,16 +10,19 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.service.media.MediaBrowserService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         if(Build.VERSION.SDK_INT>=21){
             getWindow().setStatusBarColor(Color.parseColor("#ff7828"));
         }
+
+
 
         //helpButton
         helpButton=(ImageButton) findViewById(R.id.helpButton);
@@ -143,5 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
         return cameraApps.size() > 0;
     }
+
+
+
 
 }

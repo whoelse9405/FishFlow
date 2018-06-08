@@ -1,6 +1,8 @@
 package com.example.leedongjin_notebook.fishflow2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +15,15 @@ import android.widget.ImageView;
 
 public class ResultActivity extends AppCompatActivity {
 
+    final private int REQ_RESULT_CODE=1;
+
     private WebView webView;
     private WebSettings webSettings;
 
     ImageButton helpButton;
     ImageButton backButton;
-    ImageView imageView;
+    ImageView totalImageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +50,16 @@ public class ResultActivity extends AppCompatActivity {
 
         //backButton
         backButton=(ImageButton)findViewById(R.id.backButton);
-        helpButton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        //imageView
-        imageView = (ImageView)findViewById(R.id.imageView);
+        //totalImageView
+        //Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+        totalImageView = (ImageView)findViewById(R.id.totalImageView);
 
     }
 }
