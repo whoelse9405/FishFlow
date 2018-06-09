@@ -30,15 +30,17 @@ public class ResultActivity extends AppCompatActivity {
 
     final private int REQ_RESULT_CODE=1;
 
-    private WebView webView;
     private WebSettings webSettings;
 
     ImageButton helpButton;
     ImageButton backButton;
     ImageView totalImageView;
 
+    //json수신 버튼
     Button button;
     TextView textView;
+
+    Button reportButton;
 
     final String urlStr = "http://13.125.229.163:9000/api/users/";
 
@@ -64,8 +66,6 @@ public class ResultActivity extends AppCompatActivity {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
-        webView = (WebView)findViewById(R.id.webView);
-
 
         //helpButton
         helpButton=(ImageButton) findViewById(R.id.helpButton);
@@ -89,6 +89,15 @@ public class ResultActivity extends AppCompatActivity {
         //totalImageView
         //Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
         totalImageView = (ImageView)findViewById(R.id.totalImageView);
+
+        reportButton=(Button)findViewById(R.id.reportButton);
+        reportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
