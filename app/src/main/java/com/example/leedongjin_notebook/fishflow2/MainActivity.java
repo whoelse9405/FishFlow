@@ -1,18 +1,21 @@
 package com.example.leedongjin_notebook.fishflow2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.service.media.MediaBrowserService;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -113,11 +116,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
-                startActivity(intent);
+
+                //이미지뷰가 비어있을 때
+                if(imageView.getDrawable()==null)
+                {
+                    Toast.makeText(getApplicationContext(), "이미지를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                }else{
+                    //이미지뷰에 사진이 있으면 결과 화면으로 넘기기
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    intent.putExtra("image", (Bitmap)bitmap);
+
+                    startActivity(intent);
+                }
+
             }
         });
 
-        //imageView=(ImageView)findViewById(R.id.imageView);
+        imageView=(ImageView)findViewById(R.id.imageView);
     }
 
     @Override
@@ -156,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
         return cameraApps.size() > 0;
     }
+
 
 
 

@@ -34,7 +34,7 @@ public class ResultActivity extends AppCompatActivity {
 
     ImageButton helpButton;
     ImageButton backButton;
-    ImageView totalImageView;
+    ImageView imageView;
 
     //json수신 버튼
     Button button;
@@ -53,6 +53,14 @@ public class ResultActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#ff7828"));
         }
 
+        if(AppHelper.requestQueue==null){
+            AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
+        Intent intent = getIntent();    //인텐트 받아오기
+
+
+
         textView=(TextView)findViewById(R.id.textView);
         button=(Button)findViewById(R.id.rebutton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +69,6 @@ public class ResultActivity extends AppCompatActivity {
                 sendRequst();
             }
         });
-
-        if(AppHelper.requestQueue==null){
-            AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-
 
         //helpButton
         helpButton=(ImageButton) findViewById(R.id.helpButton);
@@ -87,8 +90,9 @@ public class ResultActivity extends AppCompatActivity {
         });
 
         //totalImageView
-        //Bitmap image = BitmapFactory.decodeByteArray(arr, 0, arr.length);
-        totalImageView = (ImageView)findViewById(R.id.totalImageView);
+        imageView = (ImageView)findViewById(R.id.totalImageView);
+        Bitmap bitmap = (Bitmap)intent.getExtras().get("image");
+        imageView.setImageBitmap(bitmap);
 
         reportButton=(Button)findViewById(R.id.reportButton);
         reportButton.setOnClickListener(new View.OnClickListener() {
@@ -131,8 +135,6 @@ public class ResultActivity extends AppCompatActivity {
         request.setShouldCache(false);
         AppHelper.requestQueue.add((request));
     }
-
-
     public void processResponse(String response){
             Gson gson = new Gson();
             UserList[] userList = gson.fromJson(response,UserList[].class);
@@ -144,10 +146,9 @@ public class ResultActivity extends AppCompatActivity {
                 println("groups : "+userList[0].groups.isEmpty()+"");
             }
     }
-
-
     public void println(String data){
         textView.append(data+"\n");
     }
+
 
 }
