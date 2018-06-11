@@ -6,14 +6,14 @@
     <!-- 권한 요청-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />        <!-- 외장메모리 권한 요청-->
     <uses-permission android:name="android.permission.INTERNET" />                        <!-- 인터넷 권한 요청-->
-    <uses-feature android:name="android.hardware.Camera"/>
-
-
 
     <!-- 카메라 사용을 사용자에게 알림-->
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="true"/>
+
+
+
 
     <application
         android:allowBackup="true"

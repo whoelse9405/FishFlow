@@ -36,10 +36,6 @@ public class ResultActivity extends AppCompatActivity {
     ImageButton backButton;
     ImageView imageView;
 
-    //json수신 버튼
-    Button button;
-    TextView textView;
-
     Button reportButton;
 
     final String urlStr = "http://13.125.229.163:9000/api/users/";
@@ -53,22 +49,7 @@ public class ResultActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#ff7828"));
         }
 
-        if(AppHelper.requestQueue==null){
-            AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-
         Intent intent = getIntent();    //인텐트 받아오기
-
-
-
-        textView=(TextView)findViewById(R.id.textView);
-        button=(Button)findViewById(R.id.rebutton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendRequst();
-            }
-        });
 
         //helpButton
         helpButton=(ImageButton) findViewById(R.id.helpButton);
@@ -104,51 +85,5 @@ public class ResultActivity extends AppCompatActivity {
         });
 
     }
-
-    public void sendRequst(){
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                urlStr,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //String jsonData = response.substring(1,response.length()-1);
-                        //textView.setText(jsonData+"\n");
-                        processResponse(response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        println("에러 -> "+error.getMessage());
-                    }
-                }
-        ){
-            @Override
-            protected Map<String,String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-
-                return params;
-            }
-        };
-
-        request.setShouldCache(false);
-        AppHelper.requestQueue.add((request));
-    }
-    public void processResponse(String response){
-            Gson gson = new Gson();
-            UserList[] userList = gson.fromJson(response,UserList[].class);
-
-            if(userList!=null){
-                println("url : "+userList[0].url);
-                println("username : "+userList[0].username);
-                println("email : "+userList[0].email);
-                println("groups : "+userList[0].groups.isEmpty()+"");
-            }
-    }
-    public void println(String data){
-        textView.append(data+"\n");
-    }
-
 
 }

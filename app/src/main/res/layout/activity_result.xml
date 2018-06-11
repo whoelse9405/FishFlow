@@ -47,7 +47,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="2">
 
         <LinearLayout
@@ -55,23 +55,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/rebutton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="요청하기" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
             <ImageView
                 android:id="@+id/totalImageView"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="500dp"
                 android:layout_weight="1"
                 android:background="@android:color/darker_gray" />
 
